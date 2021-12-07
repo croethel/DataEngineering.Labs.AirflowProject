@@ -1,5 +1,8 @@
 import pandas as pd
-from matplotlib import pyplot as plt
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+
 
 def import_raw_data():
     # Imports raw data and returns a DataFrame
@@ -27,16 +30,20 @@ def import_raw_data():
     overdosegraphdataregion.set_index('12 Month-ending Period', inplace=True)
 
     overdosegraphdatade.plot(x='12 Month-ending Period', y='Data Value', rot=0,
-                                        title='12 Month-ending Yearly Overdose in Delaware', figsize=(15, 10), fontsize=12)
+                             title='12 Month-ending Yearly Overdose in Delaware', figsize=(15, 10), fontsize=12)
+
+
+    # overdosegraphdataregion.groupby('State')['Data Value'].plot(x='12 Month-ending Period', y='Data Value',
+    #                                                             title='12 Month-ending Period: Regional Overdoses',
+    #                                                             figsize=(15, 10), legend=True)
+
+    # plt.show()
+    plt.savefig(
+        f"/Users/roethelchristine/airflow/airflow/jpgs/overdosegraphde.jpg")
 
     overdosegraphdataus.plot(x='12 Month-ending Period', y='Data Value', rot=0,
-                                        title='12 Month-ending Yearly Overdose: United States', figsize=(15, 10),
-                                        fontsize=12)
+                             title='12 Month-ending Yearly Overdose: United States', figsize=(15, 10),
+                             fontsize=12)
 
-    overdosegraphdataregion.groupby('State')['Data Value'].plot(x='12 Month-ending Period', y='Data Value',
-                                                                           title='12 Month-ending Regional Overdoses',
-                                                                           figsize=(15, 10), legend=True)
-
-
-    plt.show()
-
+    plt.savefig(
+        f"/Users/roethelchristine/airflow/airflow/jpgs/overdosegraphus.jpg")

@@ -1,11 +1,8 @@
-# Step 1 - Import modules
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
 
 from clean_data import import_raw_data
-
-# Step 2 - Define default arguments
 
 default_args = {
     'owner': 'airflow',
